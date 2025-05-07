@@ -49,11 +49,11 @@ class UserService{
             if(!response){
                 throw {error: 'Invalid token'}
             }
-            const user = this.userRepository.getById(response.id)
+            const user = await this.userRepository.getById(response.id)
             if(!user){
                 throw {error: 'No user with the corresponding token exist'}
             }
-            return user;    
+            return user.id;    
         } catch (error) {
             console.log("something went wrong in signin process")
             throw error   
